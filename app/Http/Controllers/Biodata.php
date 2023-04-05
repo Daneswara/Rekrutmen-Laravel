@@ -17,10 +17,11 @@ class Biodata extends Controller
     {
         // session()->remove('user_id');
         $data = array();
-        $user_id = 3;
-        // $user_id = session('user_id');
+        // $user_id = 3;
+        $user_id = session('user_id');
         $users = DB::select("SELECT u.fullname, u.phone, u.email, u.url_photo, b.* FROM users u join biodata b on b.user_id = u.user_id where u.user_id = '$user_id' ");
-        if ($users) {
+        // die("".json_encode($users));
+        if (($users)) {
             foreach ($users as $value) {
                 $data = array(
                     "user_id" => $value->user_id,
@@ -122,7 +123,7 @@ class Biodata extends Controller
                     "created_at" => date("Y-m-d H:i:s"),
                     "updated_at" => date("Y-m-d H:i:s")
                 );
-                $insert = $this->db()->table('riwayat_pendidikan')->insert($data);
+                $insert = DB::table('riwayat_pendidikan')->insert($data);
                 $result = "Sukses Insert Pendidikan";
             } else {
 
@@ -151,7 +152,7 @@ class Biodata extends Controller
                     "updated_at" => date("Y-m-d H:i:s")
                 );
 
-                $this->db()->table('users')->where('username', session('username'))->update($data);
+                DB::table('users')->where('username', session('username'))->update($data);
                 $result = "Sukses Save Avatar";
             } else {
 
@@ -179,7 +180,7 @@ class Biodata extends Controller
                 "created_at" => date("Y-m-d H:i:s"),
                 "updated_at" => date("Y-m-d H:i:s")
             );
-            $insert = $this->db()->table('riwayat_pekerjaan')->insert($data);
+            $insert = DB::table('riwayat_pekerjaan')->insert($data);
             $result = "Sukses Insert pekerjaan";
         } catch (\Throwable $th) {
             $result = "Gagal Insert pekerjaan" . $th;
@@ -189,13 +190,14 @@ class Biodata extends Controller
     }
     public function save_biodata(Request $req)
     {
-        $result = "Sukses Input Biodata";
+        $result = "Sukses Input/Update Biodata";
         $into = 1;
         try {
             $telp = preg_replace("/[^0-9]/", "", $req->input('phone'));
             $telp = preg_replace('/^0/', '62', $telp);
             $telp = preg_replace('/^\+62/', '62', $telp);
             $telp = preg_replace('/^8/', '628', $telp);
+            // die("sdsdsd".$telp);
             if (($_POST['file_ktp_current']) == "ada") {
                 if (!is_dir('assets/file_ktp/')) {
                     mkdir('./assets/file_ktp/', 0777, TRUE);
@@ -208,7 +210,7 @@ class Biodata extends Controller
                         'file_ktp' => $target_file,
                         "updated_at" => date("Y-m-d H:i:s")
                     );
-                    $this->db()->table('biodata')->where('user_id', session('user_id'))->update($data_bio);
+                    DB::table('biodata')->where('user_id', session('user_id'))->update($data_bio);
                 } else {
 
                     $result = "Gagal Insert KTP";
@@ -226,7 +228,7 @@ class Biodata extends Controller
                         'file_resume' => $target_file,
                         "updated_at" => date("Y-m-d H:i:s")
                     );
-                    $this->db()->table('biodata')->where('user_id', session('user_id'))->update($data_bio);
+                    DB::table('biodata')->where('user_id', session('user_id'))->update($data_bio);
                 } else {
 
                     $result = "Gagal Insert KTP";
@@ -244,55 +246,55 @@ class Biodata extends Controller
                         'file_skck' => $target_file,
                         "updated_at" => date("Y-m-d H:i:s")
                     );
-                    $this->db()->table('biodata')->where('user_id', session('user_id'))->update($data_bio);
+                    DB::table('biodata')->where('user_id', session('user_id'))->update($data_bio);
                 } else {
                     $result = "Gagal Insert KTP";
                 }
             }
 
-            // $data_bio = array(
-            //     "user_id" => session('user_id'),
-            //     "fullname" => $_POST['fullname'],
-            //     "shortname" => null,
-            //     "tempat_lahir" => $_POST['tempat_lahir'],
-            //     "tanggal_lahir" => $_POST['tanggal_lahir'],
-            //     "agama" => $_POST['agama'],
-            //     "status_perkawinan" => $_POST['status_perkawinan'],
-            //     "jenis_kelamin" => $_POST['jenis_kelamin'],
-            //     "alamat_dom" => null,
-            //     "alamat_now" => null,
-            //     "no_ktp" => null,
-            //     "updated_at" => date("Y-m-d H:i:s"),
-            //     "prov_dom" => $_POST['prov_dom'],
-            //     "kab_dom" => $_POST['kab_dom'],
-            //     "kecamatan_dom" => $_POST['kecamatan_dom'],
-            //     "kelurahan_dom" => $_POST['kelurahan_dom'],
-            //     "kode_pos_dom" => null,
-            //     "prov_now" => null,
-            //     "kab_now" => null,
-            //     "kecamatan_now" => null,
-            //     "kelurahan_now" => null,
-            // );
-            // if ($req->input('password') == '-') {
-            //     $data_user = array(
-            //         'fullname' => $_POST['fullname'],
-            //         'email' => $_POST['email'],
-            //         'phone' => $telp,
-            //         "updated_at" => date("Y-m-d H:i:s"),
-            //     );
-            //     $this->db()->table('users')->where('username', session('username'))->update($data_user);
-            //     $this->db()->table('biodata')->where('user_id', session('user_id'))->update($data_bio);
-            // } else {
-            //     $data_user = array(
-            //         'fullname' => $_POST['fullname'],
-            //         'email' => $_POST['email'],
-            //         'phone' => $telp,
-            //         'password' => password_hash($req->input('password'), PASSWORD_BCRYPT),
-            //         "updated_at" => date("Y-m-d H:i:s"),
-            //     );
-            //     $this->db()->table('users')->where('username', session('username'))->update($data_user);
-            //     $this->db()->table('biodata')->where('user_id', session('user_id'))->update($data_bio);
-            // }
+            $data_bio = array(
+                "user_id" => session('user_id'),
+                "fullname" => $_POST['fullname'],
+                "shortname" => null,
+                "tempat_lahir" => $_POST['tempat_lahir'],
+                "tanggal_lahir" => $_POST['tanggal_lahir'],
+                "agama" => $_POST['agama'],
+                "status_perkawinan" => $_POST['status_perkawinan'],
+                "jenis_kelamin" => $_POST['jenis_kelamin'],
+                "alamat_dom" => null,
+                "alamat_now" => null,
+                "no_ktp" => null,
+                "updated_at" => date("Y-m-d H:i:s"),
+                "prov_dom" => $_POST['prov_dom'],
+                "kab_dom" => $_POST['kab_dom'],
+                "kecamatan_dom" => $_POST['kecamatan_dom'],
+                "kelurahan_dom" => $_POST['kelurahan_dom'],
+                "kode_pos_dom" => null,
+                "prov_now" => null,
+                "kab_now" => null,
+                "kecamatan_now" => null,
+                "kelurahan_now" => null,
+            );
+            if ($req->input('password') == '-') {
+                $data_user = array(
+                    'fullname' => $_POST['fullname'],
+                    'email' => $_POST['email'],
+                    'phone' => $telp,
+                    "updated_at" => date("Y-m-d H:i:s"),
+                );
+                DB::table('users')->where('username', session('username'))->update($data_user);
+                DB::table('biodata')->where('user_id', session('user_id'))->update($data_bio);
+            } else {
+                $data_user = array(
+                    'fullname' => $_POST['fullname'],
+                    'email' => $_POST['email'],
+                    'phone' => $telp,
+                    'password' => password_hash($req->input('password'), PASSWORD_BCRYPT),
+                    "updated_at" => date("Y-m-d H:i:s"),
+                );
+                DB::table('users')->where('username', session('username'))->update($data_user);
+                DB::table('biodata')->where('user_id', session('user_id'))->update($data_bio);
+            }
         } catch (\Throwable $th) {
             $result = "Gagal Insert Biodata" . $th;
         }
@@ -301,7 +303,7 @@ class Biodata extends Controller
     }
     public function res()
     {
-        $mst_sekolah = DB::select(DB::raw("SELECT * FROM mst_sekolah"));
+        $mst_sekolah = DB::select("SELECT * FROM mst_sekolah");
 
         return view('index', $mst_sekolah);
     }
@@ -309,7 +311,7 @@ class Biodata extends Controller
     {
         $username = $req->input('username');
         $password = $req->input('password');
-        // $dataUser = $this->db()->table('users')->where("username", $username)->getFirstRow();
+        // $dataUser = DB::table('users')->where("username", $username)->getFirstRow();
         // $data = [
         //     'email' => $req->input('email'),
         //     'password' => $req->input('password'),

@@ -179,7 +179,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="box-timeline mt-50">
-                                                            <?php foreach ($pendidikan as $item) : ?>
+                                                            @foreach($pendidikan as $item)
                                                                 <div class="item-timeline">
                                                                     <div class="timeline-year"> <span><?= date('Y', strtotime($item->masuk)) ?> - <?= date('Y', strtotime($item->keluar)) ?></span></div>
                                                                     <div class="timeline-info">
@@ -188,8 +188,7 @@
                                                                     </div>
                                                                     <div class="timeline-actions"> <a class="btn btn-edit2"></a><a class="btn btn-remove"></a></div>
                                                                 </div>
-
-                                                            <?php endforeach ?>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -748,7 +747,6 @@
 @section('js')
     
 <script>
-    let base_url = "{{url('/')}}";
     let id_prov = "{{$prov_dom}}";
     let id_kab = "{{$kab_dom}}";
     let id_kecamatan = "{{$kecamatan_dom}}";
@@ -759,7 +757,7 @@
     let id_sekolah = 0;
     let cof_pwd = 1;
     let incr = 0;
-    // console.log('id_prov :>> ', id_prov);
+    console.log('id_prov :>> ', agama_);
     $(document).ready(function() {
         if (id_prov) {
             prov(id_prov);
@@ -772,6 +770,10 @@
             sekolah();
         } else {
             prov();
+            agama();
+            kawin();
+            kelamin();
+            sekolah();
         }
     });
     $('#avatar').click(function() {
@@ -860,8 +862,10 @@
         $('#avatar_file').val() ? fd.append('avatar_file', $("#avatar_file")[0].files[0]) : (into = into * 0, Swal.fire("Info", "Masukan Avatar", "info"));
         if (into >= 1) {
             $.ajax({
-                type: "POST",
-                url: base_url + "profile/save_avatar",
+                
+        type: "POST",
+        headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+                url: "{{url('/')}}" + "/profile/save_avatar",
                 data: fd,
                 processData: false,
                 contentType: false,
@@ -895,12 +899,14 @@
             $('#nilai').val() ? fd.append('nilai', $('#nilai').val()) : fd.append('nilai', 0);
             // fd.append('jurusan', $('#jurusan').val());
             // fd.append('nilai', $('#nilai').val());
-            for (var pair of fd.entries()) {
-                console.log(pair[0] + ', ' + pair[1]);
-            }
+            // for (var pair of fd.entries()) {
+            //     console.log(pair[0] + ', ' + pair[1]);
+            // }
+            // console.log('object :>> ', "{{url('/')}}" + "/profile/add_pendidikan");
             $.ajax({
                 type: "POST",
-                url: base_url + "profile/add_pendidikan",
+                headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+                url: "{{url('/')}}" + "/profile/add_pendidikan",
                 data: fd,
                 processData: false,
                 contentType: false,
@@ -933,7 +939,8 @@
         if (into >= 1) {
             $.ajax({
                 type: "POST",
-                url: base_url + "profile/add_pekerjaan",
+                headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+                url: "{{url('/')}}" + "/profile/add_pekerjaan",
                 data: fd,
                 processData: false,
                 contentType: false,
@@ -955,9 +962,11 @@
     }
 
     function prov(id_prov) {
+        
         $.ajax({
             type: "POST",
-            url: base_url + "select/prov",
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/prov",
             success: function(data) {
                 var select = $('[name="prov_dom"]')
                     .empty()
@@ -985,7 +994,8 @@
     function kab(id_prov, id_kab) {
         $.ajax({
             type: "POST",
-            url: base_url + "select/kab/" + id_prov,
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/kab/" + id_prov,
             success: function(data) {
                 var select = $('[name="kab_dom"]')
                     .empty()
@@ -1017,7 +1027,8 @@
     function kec(id_kab, id_kec) {
         $.ajax({
             type: "POST",
-            url: base_url + "select/kec/" + id_kab,
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/kec/" + id_kab,
             success: function(data) {
                 var select = $('[name="kecamatan_dom"]')
                     .empty()
@@ -1048,7 +1059,8 @@
     function kel(id_kec, id_kel) {
         $.ajax({
             type: "POST",
-            url: base_url + "select/kel/" + id_kec,
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/kel/" + id_kec,
             success: function(data) {
                 var select = $('[name="kelurahan_dom"]')
                     .empty()
@@ -1077,10 +1089,12 @@
     }
 
     function kawin(id_prov) {
-        $.ajax({
+        $.ajax({ 
             type: "POST",
-            url: base_url + "select/kawin",
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/kawin",
             success: function(data) {
+                console.log('data :>> ', data);
                 var select = $('[name="status_perkawinan"]')
                     .empty()
                     .append('<option value="">-- Please select --</option>');
@@ -1105,9 +1119,10 @@
     }
 
     function sekolah(id_prov) {
-        $.ajax({
+        $.ajax({ 
             type: "POST",
-            url: base_url + "select/sekolah",
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/sekolah",
             success: function(data) {
                 var select = $('[name="id_sekolah"]')
                     .empty()
@@ -1133,9 +1148,10 @@
     }
 
     function kelamin(id_prov) {
-        $.ajax({
+        $.ajax({ 
             type: "POST",
-            url: base_url + "select/kelamin",
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/kelamin",
             success: function(data) {
                 var select = $('[name="kelamin"]')
                     .empty()
@@ -1161,9 +1177,10 @@
     }
 
     function agama(id_prov) {
-        $.ajax({
+        $.ajax({ 
             type: "POST",
-            url: base_url + "select/agama",
+            headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+            url: "{{url('/')}}" + "/select/agama",
             success: function(data) {
                 var select = $('[name="agama"]')
                     .empty()
@@ -1238,14 +1255,20 @@
         if ($('#file_ktp_current').val().length == 0) {
             $('#file_ktp').val() ? fd.append('file_ktp', $("#file_ktp")[0].files[0]) : (into = into * 0, Swal.fire("Info", "Masukan File KTP", "info"));
             $('#file_ktp_current').val().length == 0 ? fd.append('file_ktp_current', "ada") : (into = into * 0, Swal.fire("   Info", "Masukan File KTP", "info"));
+        }else{
+            fd.append('file_ktp_current',"Tidak Ada");
         }
         if ($('#file_resume_current').val().length == 0) {
             $('#file_resume').val() ? fd.append('file_resume', $("#file_resume")[0].files[0]) : (into = into * 0, Swal.fire("Info", "Masukan File Resume", "info"));
             $('#file_resume_current').val().length == 0 ? fd.append('file_resume_current', "ada") : (into = into * 0, Swal.fire("   Info", "Masukan File Resume", "info"));
+        }else{
+            fd.append('file_resume_current',"Tidak Ada");
         }
         if ($('#file_skck_current').val().length == 0) {
             $('#file_skck').val() ? fd.append('file_skck', $("#file_skck")[0].files[0]) : (into = into * 0, Swal.fire("Info", "Masukan File SKCK", "info"));
             $('#file_skck_current').val().length == 0 ? fd.append('file_skck_current', "ada") : (into = into * 0, Swal.fire("   Info", "Masukan File SKCK", "info"));
+        }else{
+            fd.append('file_skck_current',"Tidak Ada");
         }
         $('#fullname').val() ? fd.append('fullname', $('#fullname').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Nama Lengkap", "info"));
         $('#email').val() ? fd.append('email', $('#email').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Email", "info"));
@@ -1270,9 +1293,11 @@
             // for (var pair of fd.entries()) {
             //     console.log(pair[0] + ', ' + pair[1]);
             // }
+            // console.log('object :>> ', "{{url('/')}}" + "/profile/save_biodata");
             $.ajax({
                 type: "POST",
-                url: base_url + "profile/save_biodata",
+                headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+                url: "{{url('/')}}" + "/profile/save_biodata",
                 data: fd,
                 processData: false,
                 contentType: false,
@@ -1292,5 +1317,5 @@
         }
     }
 </script>
-<script src="{{asset('js/select.js')}}"></script>
+<script src="{{asset('vendor/js/select.js')}}"></script>
 @endsection
