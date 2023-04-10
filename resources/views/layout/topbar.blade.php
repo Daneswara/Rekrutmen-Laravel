@@ -1,7 +1,7 @@
 <div class="container">
     <div class="main-header">
         <div class="header-left">
-            <div class="header-logo"><a class="d-flex" href="index.html"><img alt="jobBox" src="{{asset('vendor/assets/imgs/template/jobhub-logo.svg')}}"></a></div>
+            <div class="header-logo"><a class="d-flex" href="index.html"><img alt="jobBox" src="{{asset('vendor/assets/imgs/ptkba/logo_tkka.svg')}}"></a></div>
         </div>
         <div class="header-nav">
             <nav class="nav-main-menu">

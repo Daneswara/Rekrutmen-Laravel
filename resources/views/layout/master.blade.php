@@ -12,7 +12,7 @@
   <meta name="description" content="Index page">
   <meta name="keywords" content="index, page">
   <meta name="author" content="">
-  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vendor/assets/imgs/template/favicon.svg') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('vendor/assets/imgs/ptkba/logo.png') }}">
   <link href="{{ asset('vendor/assets/css/style.css?version=4.1') }}>" rel="stylesheet">
   <title>@yield('title') </title>
   <style>

@@ -1,16 +1,15 @@
 <section class="section-box mt-50">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Jobs of the day</h2>
-            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Search and connect with the right candidates faster. </p>
+            <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Lowongan Terbaru</h2>
+            <p class="font-lg color-text-paragraph-2 wow animate__animated animate__fadeInUp">Temukan Pekerjaan Impian Anda di PG Trangkil! </p>
             <div class="list-tabs mt-40">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li><a class="active" id="nav-tab-job-1" href="#tab-job-1" data-bs-toggle="tab" role="tab" aria-controls="tab-job-1" aria-selected="true"><img src="{{asset('vendor/assets/imgs/page/homepage1/management.svg')}}" alt="jobBox"> Management</a></li>
-                    <li><a id="nav-tab-job-2" href="#tab-job-2" data-bs-toggle="tab" role="tab" aria-controls="tab-job-2" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/marketing.svg')}}" alt="jobBox"> Marketing &amp; Sale</a></li>
-                    <li><a id="nav-tab-job-3" href="#tab-job-3" data-bs-toggle="tab" role="tab" aria-controls="tab-job-3" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/finance.svg')}}" alt="jobBox"> Finance</a></li>
-                    <li><a id="nav-tab-job-4" href="#tab-job-4" data-bs-toggle="tab" role="tab" aria-controls="tab-job-4" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/human.svg')}}" alt="jobBox"> Human Resource</a></li>
-                    <li><a id="nav-tab-job-5" href="#tab-job-5" data-bs-toggle="tab" role="tab" aria-controls="tab-job-5" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/retail.svg')}}" alt="jobBox"> Retail &amp; Products</a></li>
-                    <li><a id="nav-tab-job-6" href="#tab-job-6" data-bs-toggle="tab" role="tab" aria-controls="tab-job-6" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/content.svg')}}" alt="jobBox"> Content Writer</a></li>
+                    <li><a class="active" id="nav-tab-job-1" href="#tab-job-1" data-bs-toggle="tab" role="tab" aria-controls="tab-job-1" aria-selected="true"><img src="{{asset('vendor/assets/imgs/page/homepage1/retail.svg')}}" alt="jobBox"> Tata Usahan &amp; Keuangan</a></li>
+                    <li><a id="nav-tab-job-2" href="#tab-job-2" data-bs-toggle="tab" role="tab" aria-controls="tab-job-2" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/marketing.svg')}}" alt="jobBox"> Tanaman </a></li>
+                    <li><a id="nav-tab-job-3" href="#tab-job-3" data-bs-toggle="tab" role="tab" aria-controls="tab-job-3" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/management.svg')}}" alt="jobBox"> Teknik</a></li>
+                    <li><a id="nav-tab-job-4" href="#tab-job-4" data-bs-toggle="tab" role="tab" aria-controls="tab-job-4" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/human.svg')}}" alt="jobBox"> Pabrikasi</a></li>
+                    <li><a id="nav-tab-job-5" href="#tab-job-5" data-bs-toggle="tab" role="tab" aria-controls="tab-job-5" aria-selected="false"><img src="{{asset('vendor/assets/imgs/page/homepage1/content.svg')}}" alt="jobBox"> Quality Control</a></li>
                 </ul>
             </div>
         </div>
