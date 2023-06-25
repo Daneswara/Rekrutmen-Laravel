@@ -6,6 +6,7 @@ main
     
 <main class="@yield('main_class')">
     <div class="bg-homepage1"></div>
+    @include('/layout_admin/sidebar')
     @yield('content')
 </main>
 @endsection

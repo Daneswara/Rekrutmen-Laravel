@@ -70,7 +70,7 @@ class Users extends Controller
             'password' => 'required|string|min:6|max:50|confirmed',
             'fullname' => 'required|string|min:4|max:100',
             'email' => 'required|string|min:4|max:50|unique:users',
-            'phone' => 'required|integer|min:10|unique:users',
+            'phone' => 'required|min:10|unique:users',
        ],[
             'required' => ':attribute Harus diisi',
             'unique' => ':attribute tidak boleh sama',
@@ -84,7 +84,7 @@ class Users extends Controller
             'email.min' => ':attribute minimal 4 huruf',
             'email.max' => ':attribute maksimal 50 huruf',
             'phone.min' => ':attribute minimal 10 angka',
-            'integer' => ':attribute harus angka',
+            // 'phone.integer' => ':attribute harus angka',
        ]);
         if ($validator->fails()) {
             return redirect()->Back()->withInput()->withErrors($validator); 
@@ -123,6 +123,7 @@ class Users extends Controller
                 'username' => $dataUser->username,
                 'fullname' => $dataUser->fullname,
                 'user_id' => $dataUser->user_id,
+                'role_id' => $dataUser->role_id,
                 'logged_in' => TRUE
             ]);
 
@@ -130,7 +131,11 @@ class Users extends Controller
                 'iplogin' => $this->getIPAddress(),
                 "last_login" => date("Y-m-d H:i:s"),
             ]);
-            return redirect('/profile');
+            if (session('role_id')==1) {
+                return redirect('/admin');
+            }else{
+                return redirect('/profile');
+            }
         }else{
             Session::flash('error', 'Email atau Password Salah');
             return redirect('/');

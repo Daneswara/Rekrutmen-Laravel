@@ -133,18 +133,17 @@
 </head>
 
 <body class="@yield('body_class')">
-  @include('/layout/preloader')
+  @include('/layout_admin/preloader')
 
   <header class="header sticky-bar">
-    @include('/layout/topbar')
+    @include('/layout_admin/topbar')
   </header>
-  @include('/layout/topbar_mobile')
+  @include('/layout_admin/topbar_mobile')
   @yield('main')
   @yield('modal')
   @yield('footer')
   @yield('css_bawah')
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="{{asset('vendor/admin/assets/js/plugins/counterup.js') }}"></script>
   <script src="{{asset('vendor/admin/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
   <script src="{{asset('vendor/admin/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
   <script src="{{asset('vendor/admin/assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
@@ -158,7 +157,11 @@
   <script src="{{asset('vendor/admin/assets/js/plugins/scrollup.js') }}"></script>
   <script src="{{asset('vendor/admin/assets/js/plugins/swiper-bundle.min.js') }}"></script>
   <script src="{{asset('vendor/admin/assets/js/plugins/counterup.js') }}"></script>
-  <script src="{{asset('admin/assets/js/plugins/jquery.circliful.js') }}"></script>
+  <script src="{{asset('vendor/admin/assets/js/plugins/jquery.circliful.js') }}"></script>
+  <script src="{{asset('vendor/admin/assets/js/plugins/charts/index.js') }}"></script>
+  <script src="{{asset('vendor/admin/assets/js/plugins/charts/xy.js') }}"></script>
+  <script src="{{asset('vendor/admin/assets/js/plugins/charts/Animated.js') }}"></script>
+  <script src="{{asset('vendor/admin/assets/js/plugins/armcharts5-script.js') }}"></script>
   <script src="{{asset('vendor/admin/assets/js/main.js?v=4.1') }}"></script>
   @yield('js')
 </body>

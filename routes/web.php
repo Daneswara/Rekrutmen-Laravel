@@ -43,6 +43,7 @@ Route::post('/profile/save_avatar', [Biodata::class, 'save_avatar']);
 
 //Admin
 Route::get('/admin', [Admin::class, 'index']);
+Route::post('/admin/save_job', [Admin::class, 'save_job']);
 
 //SELECT
 Route::post('/select/prov', [Select::class, 'prov']);
@@ -53,3 +54,4 @@ Route::post('/select/kawin', [Select::class, 'kawin']);
 Route::post('/select/sekolah', [Select::class, 'sekolah']);
 Route::post('/select/agama', [Select::class, 'agama']);
 Route::post('/select/kelamin', [Select::class, 'kelamin']);
+Route::post('/select/lokasi', [Select::class, 'lokasi']);

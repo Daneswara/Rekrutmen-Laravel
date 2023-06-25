@@ -39,4 +39,8 @@ class Select extends Controller
         $data = DB::select("SELECT * FROM mst_kelamin");
         return json_encode($data);
     }
+    public function lokasi(){  
+        $data = DB::select("SELECT * FROM mst_lokasi");
+        return json_encode($data);
+    }
 }

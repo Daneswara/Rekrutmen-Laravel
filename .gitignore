@@ -3,7 +3,11 @@
 /public/build
 /public/hot
 /public/storage
-/public/assets
+/public/assets/*
+/public/assets/file_ktp
+/public/assets/file_resume
+/public/assets/file_skck
+/public/assets/file_ijazah
 /storage/*.key
 /vendor
 .env

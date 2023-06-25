@@ -15,6 +15,8 @@
             </div>
         </div>
     </div>
+    @foreach ($job as $item)
+    @endforeach
     <div class="row">
         <div class="col-lg-12">
             <div class="section-box">
@@ -27,60 +29,68 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-30">
-                                                <label class="font-sm color-text-mutted mb-10">Job title *</label>
-                                                <input class="form-control" type="text" placeholder="e.g. Senior Product Designer">
+                                                <label class="font-sm color-text-mutted mb-10">Judul Pekerjaan *</label>
+                                                <input class="form-control" type="text" placeholder="Judul" name="judul" id="judul">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-30">
-                                                <label class="font-sm color-text-mutted mb-10">Add your job description *</label>
-                                                <textarea class="form-control" name="message" rows="8"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sem id enim suscipit commodo nec in ante. Sed viverra vel leo vitae pharetra. Morbi viverra venenatis neque, eu porttitor diam blandit nec. Etiam et volutpat magna, id molestie quam. Vestibulum vel libero gravida, scelerisque arcu eu, maximus mi. Suspendisse eu dolor lobortis, posuere enim venenatis, posuere quam.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sem id enim suscipit commodo nec in ante. Sed viverra vel leo vitae pharetra. Morbi viverra venenatis neque, eu porttitor diam blandit nec. Etiam et volutpat magna, id molestie quam. Vestibulum vel libero gravida, scelerisque arcu eu, maximus mi. Suspendisse eu dolor lobortis, posuere enim venenatis, posuere quam.</textarea>
+                                                <label class="font-sm color-text-mutted mb-10">Deskripsi/Syarat *</label>
+                                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="8"> </textarea>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
+                                        {{-- <div class="col-lg-6 col-md-6">
                                             <div class="form-group mb-30">
                                                 <label class="font-sm color-text-mutted mb-10">Job location</label>
                                                 <input class="form-control" type="text" placeholder="e.g. &quot;New York City&quot; or &quot;San Francisco”">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-lg-6 col-md-6">
                                             <div class="form-group mb-30">
-                                                <label class="font-sm color-text-mutted mb-10">Workplace type *</label>
-                                                <select class="form-control">
+                                                <label class="font-sm color-text-mutted mb-10">Lokasi Kerja *</label>
+                                                <select name="lokasi" id="lokasi" class="form-control"></select>
+                                                {{-- <select class="form-control">
                                                     <option value="1">Remote</option>
                                                     <option value="1">Office</option>
-                                                </select>
+                                                </select> --}}
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
+                                        {{-- <div class="col-lg-6 col-md-6">
                                             <div class="form-group mb-30">
                                                 <label class="font-sm color-text-mutted mb-10">Salary</label>
                                                 <input class="form-control" type="text" placeholder="$2200 - $2500">
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6">
+                                        </div> --}}
+                                        {{-- <div class="col-lg-6 col-md-6">
                                             <div class="form-group mb-30">
                                                 <label class="font-sm color-text-mutted mb-10">Tags (optional) </label>
                                                 <input class="form-control" type="text" placeholder="Figma, UI/UX, Sketch...">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-lg-6 col-md-6">
-                                            <div class="form-group mb-30">
-                                                <div class="box-upload">
-                                                    <div class="add-file-upload">
-                                                        <input class="fileupload" type="file" name="file">
-                                                    </div><a class="btn btn-default">Upload File</a>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group mb-30">
+                                                    <label class="font-sm color-text-mutted mb-10">Upload Icon</label>
+                                                    <input type="file" name="file_icon" id="file_icon" class="form-control" accept="image/*">
+                                                    <input type="hidden" name="file_icon_current" id="file_icon_current" value="{{$item->url_icon}}">
                                                 </div>
                                             </div>
+                                            {{-- <div class="form-group mb-30">
+                                                <div class="mt-35 mb-40 box-info-profie">
+                                                    <div class="add-file-upload">
+                                                        <input id="icon_job" class="fileupload" type="file" hidden />
+                                                    </div>
+                                                    <div class="image-profile"><img id="avatar" src="{{$item->url_icon}}" alt="jobbox"></div><label style="padding-right: 20px;" id="avatar_name_label"></label><a class="btn btn-apply" onclick="uploadAvatar()">Upload Avatar</a>
+                                                </div>
+                                            </div> --}}
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
+                                        {{-- <div class="col-lg-6 col-md-6">
                                             <div class="form-group mb-30 box-file-uploaded d-flex align-items-center"><span>Job_required.pdf</span><a class="btn btn-delete">Delete</a></div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-lg-12">
                                             <div class="form-group mt-10">
-                                                <button class="btn btn-default btn-brand icon-tick">Post New Job</button>
+                                                <button class="btn btn-warning btn-brand icon-book" onclick="save_job(0)">Draft New Job</button>
+                                                <button class="btn btn-default btn-brand icon-tick" onclick="save_job(1)">Post New Job</button>
                                             </div>
                                         </div>
                                     </div>
@@ -141,4 +151,108 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sem id enim susc
 @section('modal')
     @include('/modal/register')
     @include('/modal/login')
+@endsection
+
+@section('js')
+
+    <script>
+        $(document).ready(function () {
+            selectLokasi();
+        });
+        function save_job(id) {
+            var into = 1;
+            var fd = new FormData();
+            $('#deskripsi').val() ? fd.append('deskripsi', $('#deskripsi').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Deskripsi", "info"));
+            $('#judul').val() ? fd.append('judul', $('#judul').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Judul", "info"));
+            $('#lokasi').val() ? fd.append('lokasi', $('#lokasi').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Lokasi", "info"));
+            fd.append('is_publish', id);
+            fd.append('file_icon', $("#file_icon")[0].files[0])
+            if (into >= 1){
+                $.ajax({
+                    type: "POST",
+                    headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+                    url: "{{url('/')}}" + "/admin/save_job",
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // console.log('response :>> ', response);
+                        data = JSON.parse(response).result;
+                        if (data.includes("Sukses")) {
+                            Swal.fire("Good job!", data, "success").then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = window.location.href;
+                                }
+                            });
+                        } else {
+                            Swal.fire("Gagal", data, "error");
+                        }
+                    }
+                });
+            }
+            
+        }
+        function selectLokasi(lokasi) {
+            $.ajax({
+                type: "POST",
+                headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+                url: "{{url('/')}}" + "/select/lokasi",
+                success: function (data) {
+                    // console.log('data :>> ', data);
+                    var select = $('[name="lokasi"]')
+                        .empty()
+                        .append('<option value="">-- Please select --</option>');
+                    $.each(JSON.parse(data), function (i, item) {
+                        select.append(
+                            '<option value="' +
+                                item.id +
+                                '">' +
+                                item.lokasi +
+                                "</option>"
+                        );
+                    });
+                },
+                complete: function () {
+                    if (area_id != "") {
+                        $('[name="issue_area"] option[value=' + lokasi + "]").attr(
+                            "selected",
+                            "selected"
+                        );
+                    }
+                },
+            });
+            $("#lokasi").select2({
+                theme: "bootstrap4",
+            });
+        }
+        // function uploadAvatar(param) {
+        //     var fd = new FormData();
+        //     var into = 1;
+        //     $('#icon_job').val() ? fd.append('icon_job', $("#icon_job")[0].files[0]) : (into = into * 0, Swal.fire("Info", "Masukan Avatar", "info"));
+        //     if (into >= 1) {
+        //         $.ajax({
+        //             type: "POST",
+        //             headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
+        //             url: "{{url('/')}}" + "/admin/save_icon",
+        //             data: fd,
+        //             processData: false,
+        //             contentType: false,
+        //             success: function(response) {
+        //                 // console.log('response :>> ', response);
+        //                 data = JSON.parse(response).result;
+        //                 if (data.includes("Sukses")) {
+        //                     Swal.fire("Good job!", data, "success").then((result) => {
+        //                         if (result.isConfirmed) {
+        //                             window.location.href = window.location.href;
+        //                         }
+        //                     });
+        //                 } else {
+        //                     Swal.fire("Gagal", data, "error");
+        //                 }
+        //             }
+        //         });
+        //     }
+        // }
+    </script>
+    
 @endsection

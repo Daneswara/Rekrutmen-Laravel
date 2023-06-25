@@ -12,25 +12,25 @@
                     <!-- mobile menu start-->
                     <nav>
                         <ul class="main-menu">
-                            <li> <a class="dashboard2" href="index.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/dashboard.svg')}}" alt="jobBox"><span class="name">Dashboard</span></a>
+                            <li> <a class="dashboard2" href="index.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/dashboard.svg')}}" alt="jobBox"><span class="name">Dashboard</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="candidates.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/candidates.svg')}}" alt="jobBox"><span class="name">Candidates</span></a>
+                            <li> <a class="dashboard2" href="candidates.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/candidates.svg')}}" alt="jobBox"><span class="name">Candidates</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="recruiters.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/recruiters.svg')}}" alt="jobBox"><span class="name">Recruiters</span></a>
+                            <li> <a class="dashboard2" href="recruiters.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/recruiters.svg')}}" alt="jobBox"><span class="name">Recruiters</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="my-job-grid.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/jobs.svg')}}" alt="jobBox"><span class="name">My Jobs</span></a>
+                            <li> <a class="dashboard2" href="my-job-grid.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/jobs.svg')}}" alt="jobBox"><span class="name">My Jobs</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="my-tasks-list.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/tasks.svg')}}" alt="jobBox"><span class="name">Tasks List</span></a>
+                            <li> <a class="dashboard2" href="my-tasks-list.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/tasks.svg')}}" alt="jobBox"><span class="name">Tasks List</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="profile.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/profiles.svg')}}" alt="jobBox"><span class="name">My Profiles</span></a>
+                            <li> <a class="dashboard2" href="profile.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/profiles.svg')}}" alt="jobBox"><span class="name">My Profiles</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="my-resume.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/cv-manage.svg')}}" alt="jobBox"><span class="name">CV Manage</span></a>
+                            <li> <a class="dashboard2" href="my-resume.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/cv-manage.svg')}}" alt="jobBox"><span class="name">CV Manage</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="settings.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/settings.svg')}}" alt="jobBox"><span class="name">Setting</span></a>
+                            <li> <a class="dashboard2" href="settings.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/settings.svg')}}" alt="jobBox"><span class="name">Setting</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="authentication.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/authentication.svg')}}" alt="jobBox"><span class="name">Authentication</span></a>
+                            <li> <a class="dashboard2" href="authentication.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/authentication.svg')}}" alt="jobBox"><span class="name">Authentication</span></a>
                             </li>
-                            <li> <a class="dashboard2" href="login.html"><img src="{{ asset('vendor/admin/assets//imgs/page/dashboard/logout.svg')}}" alt="jobBox"><span class="name">Logout</span></a>
+                            <li> <a class="dashboard2" href="login.html"><img src="{{ asset('vendor/admin/assets/imgs/page/dashboard/logout.svg')}}" alt="jobBox"><span class="name">Logout</span></a>
                             </li>
                         </ul>
                     </nav>

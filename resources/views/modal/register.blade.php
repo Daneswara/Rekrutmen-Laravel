@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="number">Contact Number *</label>
-                        <input class="form-control" id="number" type="text" required="" name="phone" placeholder="(+01) 234 567 89">
+                        <input class="form-control" id="number" type="number" required="" name="phone" placeholder="081234567890">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="password">Password *</label>
