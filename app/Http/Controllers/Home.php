@@ -19,9 +19,26 @@ class Home extends Controller
         //     $result  = array('job' => $job);
         //     return view('index');
         // }
-        
-        $job = DB::table('job')->get();
-        $result  = array('job' => $job);
+        $job = array();
+        $job_ = DB::table('job')->where('is_publish', 't')->get();
+        $fungsi = DB::table('mst_fungsi')->get();
+        $lokasi = DB::table('mst_lokasi')->get();
+        foreach ($job_ as $value) {
+            array_push($job, array(
+                'judul' => $value->judul,
+                'deskripsi' => $value->deskripsi,
+                'syarat' => $value->syarat,
+                'fungsi_id' => $value->fungsi_id,
+                'lokasi' => DB::table('mst_lokasi')->where('id', $value->lokasi)->value("lokasi"),
+                'url_icon' => url('/')."/".$value->url_icon,
+                'url_icon_ori' => $value->url_icon,
+            ));
+        }
+        $result  = array(
+            'job' => $job,
+            'fungsi' => $fungsi,
+            'lokasi' => $lokasi,
+        );
         return view('index', $result);
     }
 }

@@ -33,18 +33,16 @@
                             <div class="box-industry">
                                 <select class="form-input mr-20 select-active input-industry">
                                     <option value="">Bagian</option>
-                                    <option value="0">Tata Usahan & Keuangan</option>
-                                    <option value="1">Teknik</option>
-                                    <option value="2">Tanaman</option>
-                                    <option value="3">Pabrikasi</option>
-                                    <option value="4">Quality Control</option>
+                                    @foreach ($fungsi as $item)
+                                    <option value="{{$item->id}}">{{$item->fungsi}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <select class="form-input mr-20 select-active">
                                 <option value="">Lokasi</option>
-                                <option value="TK">PG Trangkil</option>
-                                <option value="KBA">PG Kebon Agung</option>
-                                <option value="KD">Kantor Direksi</option>
+                                @foreach ($lokasi as $item)
+                                <option value="{{$item->id}}">{{$item->lokasi}}</option>
+                                @endforeach
                             </select>
                             <input class="form-input input-keysearch mr-10" type="text" placeholder="Your keyword... ">
                             <button class="btn btn-default btn-find font-sm">Search</button>
