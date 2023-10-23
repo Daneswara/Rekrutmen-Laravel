@@ -50,4 +50,7 @@ class Admin extends Controller
         $res = array('result' => $result);
         return (json_encode($res));
     }
+    function view_all_pelamar(){
+        
+    }
 }

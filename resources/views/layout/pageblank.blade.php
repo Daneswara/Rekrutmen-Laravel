@@ -1,4 +1,4 @@
-@extends('/layout/master')
+@extends('/layout/master_blank')
 @section('main_class')
 main
 @endSection
@@ -8,7 +8,4 @@ main
     <div class="bg-homepage1"></div>
     @yield('content')
 </main>
-@endsection
-@section('footer')
-    @include('/layout/footer')
 @endsection

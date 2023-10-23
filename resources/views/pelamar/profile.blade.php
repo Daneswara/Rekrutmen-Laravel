@@ -133,7 +133,7 @@
                                     <div class="col-lg-12">
                                         <div class="panel-white mb-30">
                                             <div class="box-padding">
-                                                <h5 class="icon-edu">Education</h5>
+                                                <h5 class="icon-edu">Pendidikan</h5>
                                                 <div class="row mt-30">
                                                     <div class="col-lg-9">
                                                         <div class="row">
@@ -178,7 +178,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="box-timeline mt-50">
+                                                        <div class="box-timeline mt-50" id="pendidikan_list">
                                                             @foreach($pendidikan as $item)
                                                                 <div class="item-timeline">
                                                                     <div class="timeline-year"> <span><?= date('Y', strtotime($item->masuk)) ?> - <?= date('Y', strtotime($item->keluar)) ?></span></div>
@@ -196,7 +196,7 @@
                                         </div>
                                         <div class="panel-white mb-30">
                                             <div class="box-padding">
-                                                <h5 class="icon-edu">Work & Experience</h5>
+                                                <h5 class="icon-edu">Pengalaman Kerja</h5>
                                                 <div class="row mt-30">
                                                     <div class="col-lg-9">
                                                         <div class="row">
@@ -236,7 +236,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="box-timeline mt-50">
+                                                        <div class="box-timeline mt-50" id="kerja_list">
                                                             <?php foreach ($pekerjaan as $item) : ?>
                                                                 <div class="item-timeline">
                                                                     <div class="timeline-year"> <span><?= date('Y', strtotime($item->masuk)) ?> - <?= date('Y', strtotime($item->keluar)) ?></span></div>
@@ -757,7 +757,7 @@
     let id_sekolah = 0;
     let cof_pwd = 1;
     let incr = 0;
-    console.log('id_prov :>> ', agama_);
+    // console.log('id_prov :>> ', agama_);
     $(document).ready(function() {
         if (id_prov) {
             prov(id_prov);
@@ -889,6 +889,7 @@
     function pendidikanAdd() {
         var fd = new FormData();
         var into = 1;
+        var html = '';
         $('#file_ijazah').val() ? fd.append('file_ijazah', $("#file_ijazah")[0].files[0]) : (into = into * 0, Swal.fire("Info", "Masukan File Izajah", "info"));
         id_sekolah ? fd.append('id_sekolah', id_sekolah) : (into = into * 0, Swal.fire("Info", "Masukan Jenis Pendidikan", "info"));
         $('#sekolah').val() ? fd.append('sekolah', $('#sekolah').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Nama Pendidikan", "info"));
@@ -913,10 +914,23 @@
                 success: function(response) {
                     // console.log('response :>> ', response);
                     data = JSON.parse(response).result;
+                    pendidikan = JSON.parse(response).data;
                     if (data.includes("Sukses")) {
                         Swal.fire("Good job!", data, "success").then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = window.location.href;
+                                $.each(pendidikan, function (i, item) { 
+                                    html +='<div class="item-timeline">'
+                                    html +='    <div class="timeline-year"> <span>'+item.masuk+' - '+item.keluar+'</span></div>'
+                                    html +='    <div class="timeline-info">'
+                                    html +='        <h5 class="color-brand-1 mb-20">'+item.sekolah+'</h5>'
+                                    html +='        <p class="color-text-paragraph-2 mb-15">'+item.jurusan+'</p>'
+                                    html +='    </div>'
+                                    html +='    <div class="timeline-actions"> <a class="btn btn-edit2"></a><a class="btn btn-remove"></a></div>'
+                                    html +='</div>'
+                                     
+                                });
+                                $('#pendidikan_list').html(html);
+                                // window.location.href = window.location.href;
                             }
                         });
                     } else {
@@ -930,6 +944,7 @@
     function pekerjaanAdd() {
         var fd = new FormData();
         var into = 1;
+        var html="";
         // console.log('$(', $('#pengalaman').val());
         $('#nama_pekerjaan').val() ? fd.append('nama_pekerjaan', $('#nama_pekerjaan').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Nama Pekerjaan", "info"));
         $('#jabatan').val() ? fd.append('jabatan', $('#jabatan').val()) : (into = into * 0, Swal.fire("   Info", "Masukan Jabatan", "info"));
@@ -947,10 +962,23 @@
                 success: function(response) {
                     // console.log('response :>> ', response);
                     data = JSON.parse(response).result;
+                    kerja = JSON.parse(response).data;
                     if (data.includes("Sukses")) {
                         Swal.fire("Good job!", data, "success").then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = window.location.href;
+                                $.each(kerja, function (i, item) { 
+                                    html +='<div class="item-timeline">'
+                                    html +='    <div class="timeline-year"> <span>'+item.masuk+' - '+item.keluar+'</span></div>'
+                                    html +='    <div class="timeline-info">'
+                                    html +='        <h5 class="color-brand-1 mb-20">'+item.nama_pekerjaan+'</h5>'
+                                    html +='        <p class="color-text-paragraph-2 mb-15">'+item.jabatan+'</p>'
+                                    html +='    </div>'
+                                    html +='    <div class="timeline-actions"> <a class="btn btn-edit2"></a><a class="btn btn-remove"></a></div>'
+                                    html +='</div>'
+                                     
+                                });
+                                $('#kerja_list').html(html);
+                                // window.location.href = window.location.href;
                             }
                         });
                     } else {
@@ -1094,7 +1122,7 @@
             headers: { "X-CSRF-Token": "{{{ csrf_token() }}}" },
             url: "{{url('/')}}" + "/select/kawin",
             success: function(data) {
-                console.log('data :>> ', data);
+                // console.log('data :>> ', data);
                 var select = $('[name="status_perkawinan"]')
                     .empty()
                     .append('<option value="">-- Please select --</option>');

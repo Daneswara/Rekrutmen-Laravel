@@ -42,11 +42,11 @@
                         <label class="form-label" for="file">Upload Resume</label>
                         <input class="form-control" id="file" name="resume" type="file">
                     </div> -->
-                    <div class="login_footer form-group d-flex justify-content-between">
+                    {{-- <div class="login_footer form-group d-flex justify-content-between">
                         <label class="cb-container">
                             <input type="checkbox"><span class="text-small">Agree our terms and policy</span><span class="checkmark"></span>
                         </label><a class="text-muted" href="page-contact.html">Lean more</a>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <button class="btn btn-default hover-up w-100" type="submit" name="login">Register</button>
                     </div>

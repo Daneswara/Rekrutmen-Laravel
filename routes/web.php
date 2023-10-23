@@ -28,22 +28,26 @@ Route::get('/', [Home::class, 'index']);
 Route::post('register', [Users::class, 'register_submit'])->name('register');
 Route::post('actionlogin', [Users::class, 'login_submit'])->name('actionlogin');
 Route::post('actionlogout', [Users::class, 'actionlogout'])->name('actionlogout');
+Route::get('/login', [Users::class, 'login'])->name('login');
 Route::get('/profile', [Biodata::class, 'profile']);
 Route::get('/profile/process', [Biodata::class, 'profile_submit']);
 Route::post('/profile/add_pendidikan', [Biodata::class, 'add_pendidikan']); 
 Route::post('/profile/add_pekerjaan', [Biodata::class, 'add_pekerjaan']); 
 Route::post('/profile/save_biodata', [Biodata::class, 'save_biodata']);
 Route::post('/profile/save_avatar', [Biodata::class, 'save_avatar']);
+Route::group(['middleware' => ['auth']], function () { 
+});
 
 // Route::get('/', [LoginController::class, 'login'])->name('login');
 // Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
-// Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
-// Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+// Route::get('home', [HomeController::class, 'index'])->name('home');
+// Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 //Admin
-Route::get('/admin', [Admin::class, 'index']);
+Route::get('/admin', [Admin::class, 'index'])->name('admin');
 Route::post('/admin/save_job', [Admin::class, 'save_job']);
+Route::get('/admin/pelamar', [Admin::class, 'index']);
 
 //SELECT
 Route::post('/select/prov', [Select::class, 'prov']);

@@ -2,11 +2,11 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-content-area">
             <div class="perfect-scroll">
-                <div class="mobile-search mobile-header-border mb-30">
+                {{-- <div class="mobile-search mobile-header-border mb-30">
                     <form action="#">
                         <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
                     </form>
-                </div>
+                </div> --}}
                 <div class="mobile-menu-wrap mobile-header-border">
                     <!-- mobile menu start-->
                     <nav>
@@ -15,7 +15,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="mobile-account">
+                {{-- <div class="mobile-account">
                     <h6 class="mb-10">Your Account</h6>
                     <ul class="mobile-menu font-heading">
                         <li><a href="#">Profile</a></li>
@@ -25,7 +25,7 @@
                         <li><a href="page-signin.html">Sign Out</a></li>
                     </ul>
                 </div>
-                <div class="site-copyright">Copyright 2022 &copy; JobBox. <br>Designed by AliThemes.</div>
+                <div class="site-copyright">Copyright 2022 &copy; JobBox. <br>Designed by AliThemes.</div> --}}
             </div>
         </div>
     </div>

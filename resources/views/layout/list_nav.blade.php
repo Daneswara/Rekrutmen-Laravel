@@ -1,6 +1,8 @@
-<li><a class="active" href="{{url('/')}}">Home</a>
-</li>
-<li class="has-children"><a href="jobs-grid.html">Find a Job</a>
+<li><a class="active" href="{{url('/')}}">Home</a></li>
+<li><a href="{{url('/profile')}}">Profile</a></li>
+<li><a href="{{url('/')}}">Lowongan Pekerjaan</a></li>
+<li><a href="{{url('/')}}">Keluar</a></li>
+{{-- <li class="has-children"><a href="jobs-grid.html">Find a Job</a>
     <ul class="sub-menu">
         <li><a href="jobs-grid.html">Jobs Grid</a></li>
         <li><a href="jobs-list.html">Jobs List</a></li>
@@ -37,5 +39,5 @@
         <li><a href="blog-grid-2.html">Blog Grid 2</a></li>
         <li><a href="blog-details.html">Blog Single</a></li>
     </ul>
-</li>
-<li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">Dashboard</a></li>
+</li> --}}
+{{-- <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">Dashboard</a></li> --}}

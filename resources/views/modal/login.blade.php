@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="password">Password *</label>
-                        <input class="form-control" id="password" type="password" required="" name="password" >
+                        <input class="form-control" id="password" type="password" required="" name="password" placeholder="************">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-default hover-up w-100" type="submit" name="login">Login</button>

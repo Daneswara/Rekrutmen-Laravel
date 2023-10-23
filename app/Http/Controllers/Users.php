@@ -165,9 +165,12 @@ class Users extends Controller
         // }
         // return redirect('/');
     }
-    public function actionlogout()
+    public function actionlogout(Request $req)
     {
         Auth::logout();
+        $req->session()->invalidate();
+ 
+        $req->session()->regenerateToken();
         return redirect('/');
     }
     public function getIPAddress()
@@ -185,5 +188,8 @@ class Users extends Controller
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         return $ip;
+    }
+    function login() {
+        return view('auth/login');
     }
 }

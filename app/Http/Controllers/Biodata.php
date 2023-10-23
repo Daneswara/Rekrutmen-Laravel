@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Session;
 
 class Biodata extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('IsUser');
+    }
         public function profile_submit()
     {
         echo "Hallo";
     }
+    
     public function profile()
     {
         // session()->remove('user_id');
@@ -22,6 +27,7 @@ class Biodata extends Controller
         $users = DB::select("SELECT u.fullname, u.phone, u.email, u.url_photo, b.* FROM users u join biodata b on b.user_id = u.user_id where u.user_id = '$user_id' ");
         // die("".json_encode($users));
         if (($users)) {
+            echo  $user_id;die();
             foreach ($users as $value) {
                 $data = array(
                     "user_id" => $value->user_id,
@@ -104,6 +110,7 @@ class Biodata extends Controller
     public function add_pendidikan()
     {
         try {
+            $data_cek = array();
             if (!is_dir('assets/file_ijazah/')) {
                 mkdir('./assets/file_ijazah/', 0777, TRUE);
             }
@@ -124,6 +131,17 @@ class Biodata extends Controller
                     "updated_at" => date("Y-m-d H:i:s")
                 );
                 $insert = DB::table('riwayat_pendidikan')->insert($data);
+                $user_id = session('user_id');
+                $data_ = DB::select("SELECT * FROM riwayat_pendidikan where user_id = '$user_id' ");
+                foreach ($data_ as $value) {
+                    array_push($data_cek, array(
+                        'sekolah'=>$value->sekolah,
+                        'jurusan'=>$value->jurusan,
+                        'nilai'=>$value->nilai,
+                        'masuk'=>date('Y', strtotime($value->masuk)),
+                        'keluar'=>date('Y', strtotime($value->keluar)),
+                    ));
+                }
                 $result = "Sukses Insert Pendidikan";
             } else {
 
@@ -132,7 +150,7 @@ class Biodata extends Controller
         } catch (\Throwable $th) {
             $result = "Gagal Insert Pendidikan";
         }
-        $res = array('result' => $result);
+        $res = array('result' => $result, 'data'=>$data_cek);
         return (json_encode($res));
     }
     public function save_avatar()
@@ -170,6 +188,7 @@ class Biodata extends Controller
         //     mkdir('.assets/file_ijazah/', 0777, TRUE);
         // }
         try {
+            $data_cek = array();
             $data = array(
                 'nama_pekerjaan' => $_POST['nama_pekerjaan'],
                 'jabatan' => $_POST['jabatan'],
@@ -181,11 +200,22 @@ class Biodata extends Controller
                 "updated_at" => date("Y-m-d H:i:s")
             );
             $insert = DB::table('riwayat_pekerjaan')->insert($data);
+            $user_id = session('user_id');
+            $data_ = DB::select("SELECT * FROM riwayat_pekerjaan where user_id = '$user_id' ");
+            foreach ($data_ as $value) {
+                array_push($data_cek, array(
+                    'nama_pekerjaan'=>$value->nama_pekerjaan,
+                    'jabatan'=>$value->jabatan,
+                    'pengalaman'=>$value->pengalaman,
+                    'masuk'=>date('Y', strtotime($value->masuk)),
+                    'keluar'=>date('Y', strtotime($value->keluar)),
+                ));
+            }
             $result = "Sukses Insert pekerjaan";
         } catch (\Throwable $th) {
             $result = "Gagal Insert pekerjaan" . $th;
         }
-        $res = array('result' => $result);
+        $res = array('result' => $result, 'data'=>$data_cek);
         return (json_encode($res));
     }
     public function save_biodata(Request $req)
@@ -324,6 +354,8 @@ class Biodata extends Controller
                 'user_id' => $dataUser->user_id,
                 'logged_in' => TRUE
             ]);
+            
+            $req->session()->regenerate();
 
             DB::table("users")->where('username', $username)->update([
                 'iplogin' => $this->getIPAddress(),
